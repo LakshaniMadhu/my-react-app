@@ -4,7 +4,7 @@ const Header: React.FC = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bgprimary">
       <div className="container">
         <a className="navbar-brand" href="#">
-          Employee Management System
+          Students Management System
         </a>
       </div>
     </nav>
