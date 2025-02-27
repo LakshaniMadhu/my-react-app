@@ -1,24 +1,24 @@
 import axios from 'axios';
-const API_URL = 'http://localhost:8080/api/employees'; // Replace with yourbackend API URL
-export const getEmployees = async () => {
+const API_URL = 'http://localhost:8080/api/students'; // Replace with yourbackend API URL
+export const getStudents = async () => {
  const response = await axios.get(API_URL);
  return response.data;
 };
-export const addEmployee = async (employee: {id:string; firstName: string;
+export const addStudent = async (student: {id:string; firstName: string;
 lastName: string; email: string }) => {
- const response = await axios.post(API_URL, employee);
+ const response = await axios.post(API_URL, student);
  return response.data;
 };
-export const getEmployeeById = async (id: number) => {
+export const getStudentById = async (id: number) => {
  const response = await axios.get(`${API_URL}/${id}`);
  return response.data;
 };
-export const updateEmployee = async (id: number, employee: { firstName:
+export const updateStudent = async (id: number, student: { firstName:
 string; lastName: string; email: string }) => {
- const response = await axios.put(`${API_URL}/${id}`, employee);
+ const response = await axios.put(`${API_URL}/${id}`, student);
  return response.data;
 };
-export const deleteEmployee = async (id: number) => {
+export const deleteStudent = async (id: number) => {
  const response = await axios.delete(`${API_URL}/${id}`);
  return response.data;
 };
