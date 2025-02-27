@@ -13,7 +13,7 @@ const ListStudentComponent: React.FC = () => {
   const [students, setStudents] = React.useState<Student[]>([]);
   const navigate = useNavigate();
   React.useEffect(() => {
-    const fetchEmployees = async () => {
+    const fetchStudents = async () => {
       const data = await getStudents();
       setStudents(data);
     };
@@ -25,7 +25,7 @@ const ListStudentComponent: React.FC = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteStudent(id);
-      setStudents((prev) => prev.filter((Student) => student.id !== id));
+      setStudents((prev) => prev.filter((Students) => students.id !== id));
     } catch (error) {
       console.error("Failed to delete employee:", error);
     }
