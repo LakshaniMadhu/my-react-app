@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
-  addEmployee,
-  getEmployeeById,
-  updateEmployee,
-} from "../services/EmployeeService";
-const AddEmployeeComponent: React.FC = () => {
-  const [employeeId, setEmployeeId] = useState("");
+  addStudent,
+  getStudentById,
+  updateStudent,
+} from "../services/StudentService";
+const AddStudentComponent: React.FC = () => {
+  const [studentId, setStudentId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,55 +15,55 @@ const AddEmployeeComponent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   useEffect(() => {
     if (id) {
-      const fetchEmployee = async () => {
-        const employee = await getEmployeeById(Number(id));
-        setEmployeeId(String(employee.id));
-        setFirstName(employee.firstName);
-        setLastName(employee.lastName);
-        setEmail(employee.email);
+      const fetchStudent = async () => {
+        const student = await getStudentById(Number(id));
+        setStudentId(String(student.id));
+        setFirstName(student.firstName);
+        setLastName(student.lastName);
+        setEmail(student.email);
       };
-      fetchEmployee();
+      fetchStudent();
     }
   }, [id]);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Validation
-    if (!employeeId || !firstName || !lastName || !email) {
+    if (!studentId || !firstName || !lastName || !email) {
       setErrorMessage("All fields are required!");
       return;
     }
-    if (!/^\d+$/.test(employeeId)) {
+    if (!/^\d+$/.test(studentId)) {
       setErrorMessage("ID must be a numeric value!");
       return;
     }
-    const employee = { id: employeeId, firstName, lastName, email };
+    const student = { id: studentId, firstName, lastName, email };
     try {
       if (id) {
-        await updateEmployee(Number(id), employee);
+        await updateStudent(Number(id), student);
       } else {
-        await addEmployee(employee);
+        await addStudent(student);
       }
       navigate("/");
     } catch (error) {
-      console.error("Failed to save employee:", error);
-      setErrorMessage("An error occurred while saving the employee.");
+      console.error("Failed to save student:", error);
+      setErrorMessage("An error occurred while saving the student.");
     }
   };
   return (
     <div className="container mt-3">
       <h3 className="text-primary text-center">
-        {id ? "Update Employee" : "Add Employee"}
+        {id ? "Update Student" : "Add Employee"}
       </h3>
       {errorMessage && <div className="alert alertdanger">{errorMessage}</div>}
       <form onSubmit={handleSubmit} className="card p-3 shadow">
         <div className="form-group mb-3">
-          <label htmlFor="employeeId">ID</label>
+          <label htmlFor="studentId">ID</label>
           <input
             type="text"
-            id="employeeId"
+            id="studentId"
             className="form-control"
-            value={employeeId}
-            onChange={(e) => setEmployeeId(e.target.value)}
+            value={studentId}
+            onChange={(e) => setStudentId(e.target.value)}
             required
             disabled={!!id}
           />
@@ -102,10 +102,10 @@ const AddEmployeeComponent: React.FC = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          {id ? "Update Employee" : "Add Employee"}
+          {id ? "Update Student" : "Add Student"}
         </button>
       </form>
     </div>
   );
 };
-export default AddEmployeeComponent;
+export default AddStudentComponent;
