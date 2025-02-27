@@ -1,46 +1,46 @@
 import React from "react";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-import { deleteEmployee, getEmployees } from "../services/EmployeeService";
-interface Employee {
+import { deleteStudent, getStudents } from "../services/StudentService";
+interface Student {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
 }
 
-const ListEmployeeComponent: React.FC = () => {
-  const [employees, setEmployees] = React.useState<Employee[]>([]);
+const ListStudentComponent: React.FC = () => {
+  const [students, setStudents] = React.useState<Student[]>([]);
   const navigate = useNavigate();
   React.useEffect(() => {
     const fetchEmployees = async () => {
-      const data = await getEmployees();
-      setEmployees(data);
+      const data = await getStudents();
+      setStudents(data);
     };
-    fetchEmployees();
+    fetchStudents();
   }, []);
   const handleUpdate = (id: number) => {
-    navigate(`/update-employee/${id}`);
+    navigate(`/update-/${id}`);
   };
   const handleDelete = async (id: number) => {
     try {
-      await deleteEmployee(id);
-      setEmployees((prev) => prev.filter((employee) => employee.id !== id));
+      await deleteStudent(id);
+      setStudents((prev) => prev.filter((Student) => student.id !== id));
     } catch (error) {
       console.error("Failed to delete employee:", error);
     }
     
   };
-  const handleAddEmployee = () => {
-    navigate('/add-employee');
+  const handleAddStudent = () => {
+    navigate('/add-student');
     };
    
   return (
     <div className="container mt-3">
       <h3 className="text-primary">Employee List</h3>
       <button className="btn btn-primary mb-3"
-onClick={handleAddEmployee}>
- Add Employee
+onClick={handleAddStudent}>
+ Add Student
  </button>
 
       <table className="table table-bordered table-striped">
@@ -54,22 +54,22 @@ onClick={handleAddEmployee}>
           </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.email}</td>
+          {students.map((student) => (
+            <tr key={student.id}>
+              <td>{student.id}</td>
+              <td>{student.firstName}</td>
+              <td>{student.lastName}</td>
+              <td>{student.email}</td>
               <td>
                 <button
                   className="btn btn-primary me-2"
-                  onClick={() => handleUpdate(employee.id)}
+                  onClick={() => handleUpdate(student.id)}
                 >
                   Update
                 </button>
                 <button
                   className="btn btn-danger"
-                  onClick={() => handleDelete(employee.id)}
+                  onClick={() => handleDelete(student.id)}
                 >
                   Delete
                 </button>
@@ -81,4 +81,4 @@ onClick={handleAddEmployee}>
     </div>
   );
 };
-export default ListEmployeeComponent;
+export default ListStudentComponent;
