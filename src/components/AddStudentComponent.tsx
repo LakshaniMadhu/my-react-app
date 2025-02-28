@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   addStudent,
-  getStudentById,
-  updateStudent,
-} from "../services/StudentService";
+  getStudentById, 
+  updateStudent} from "../services/StudentService";
+
 const AddStudentComponent: React.FC = () => {
   const [studentId, setStudentId] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -52,7 +52,7 @@ const AddStudentComponent: React.FC = () => {
   return (
     <div className="container mt-3">
       <h3 className="text-primary text-center">
-        {id ? "Update Student" : "Add Employee"}
+        {id ? "Update Student" : "Add Student"}
       </h3>
       {errorMessage && <div className="alert alertdanger">{errorMessage}</div>}
       <form onSubmit={handleSubmit} className="card p-3 shadow">

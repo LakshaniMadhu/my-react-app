@@ -27,21 +27,19 @@ const ListStudentComponent: React.FC = () => {
       await deleteStudent(id);
       setStudents((prev) => prev.filter((Student) => Student.id !== id));
     } catch (error) {
-      console.error("Failed to delete employee:", error);
+      console.error("Failed to delete student:", error);
     }
-    
   };
   const handleAddStudent = () => {
-    navigate('/add-student');
-    };
-   
+    navigate("/add-student");
+  };
+
   return (
     <div className="container mt-3">
-      <h3 className="text-primary">Employee List</h3>
-      <button className="btn btn-primary mb-3"
-onClick={handleAddStudent}>
- Add Student
- </button>
+      <h3 className="text-primary">Student List</h3>
+      <button className="btn btn-primary mb-3" onClick={handleAddStudent}>
+        Add Student
+      </button>
 
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
