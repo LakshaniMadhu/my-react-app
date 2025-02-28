@@ -25,9 +25,9 @@ const ListStudentComponent: React.FC = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteStudent(id);
-      setStudents((prev) => prev.filter((Student) => students.id !== id));
+      setStudents((prev) => prev.filter((Student) => Student.id !== id));
     } catch (error) {
-      console.error("Failed to delete employee:", error);
+      console.error("Failed to delete student:", error);
     }
     
   };
@@ -37,7 +37,7 @@ const ListStudentComponent: React.FC = () => {
    
   return (
     <div className="container mt-3">
-      <h3 className="text-primary">Employee List</h3>
+      <h3 className="text-primary">Student List</h3>
       <button className="btn btn-primary mb-3"
 onClick={handleAddStudent}>
  Add Student
